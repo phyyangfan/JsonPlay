@@ -53,6 +53,8 @@ cd app/bin/
 # run the program (assuming the input file test.json containing the JSON
 # string exists in directory /some/path/)
 ./app < /some/path/test.json
+# or
+cat /some/path/test.json | ./app
 
 # alternatively, run the program using keyboard input to provide the JSON string
 ./app #press Enter key
