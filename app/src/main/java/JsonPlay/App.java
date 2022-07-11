@@ -4,21 +4,29 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
 import json.JsonUtil;
 
+import java.util.Scanner;
+
 public class App {
     public static void main(String[] args) {
-        if (args.length != 1) {
-            System.out.println(
-                    "Error: an input string representing a valid JSON object (not containing JSON arrays) is required."
-            );
-            return;
+        // read input string from the standard input stream
+        Scanner scanner = new Scanner(System.in).useDelimiter("\n");
+        StringBuilder inputStringBuilder = new StringBuilder();
+        while (scanner.hasNext()) {
+            inputStringBuilder.append(scanner.next());
         }
+        scanner.close();
+
+        // flatten the JSON object represented by the input string (if valid)
         try {
-            JsonObject flattenedJsonObject = JsonUtil.parseAndFlattenJsonObjectFromString(args[0]);
+            JsonObject flattenedJsonObject = JsonUtil.parseAndFlattenJsonObjectFromString(inputStringBuilder.toString());
             System.out.println(flattenedJsonObject);
         } catch (JsonSyntaxException jsonSyntaxException) {
             System.out.println("Error: input JSON string is invalid.");
         } catch (UnsupportedOperationException unsupportedOperationException) {
-            System.out.println("Error: input JSON string should be a valid JSON object not containing JSON arrays.");
+            System.out.println(
+                    "Error: input JSON string should not represent a JsonArray, a JsonPrimitive, a JsonNull," +
+                            " or a JsonObject containing JsonArrays."
+            );
         }
     }
 }
