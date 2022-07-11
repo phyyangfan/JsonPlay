@@ -53,4 +53,16 @@ cd app/bin/
 # run the program (assuming the input file test.json containing the JSON
 # string exists in directory /some/path/)
 ./app < /some/path/test.json
+
+# alternatively, run the program using keyboard input to provide the JSON string
+./app #press Enter key
+{
+  "Product Id": 123,
+  "Product Name": "Some Product",
+  "Attributes": {
+    "Color": "blue",
+    "Condition": "new"
+  }
+}#press Enter key
+#press ctrl+D
 ```
